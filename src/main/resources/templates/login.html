@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Page</title>
+    <style >
+    	body {
+			font-family: Arial, sans-serif;
+			background-color: #f4f4f4;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+		}
+		
+		.container {
+			text-align: center;
+			width: 700px;
+		}
+		
+		.form-container {
+			background-color: #fff;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			padding: 20px;
+		}
+		
+		.form-container input {
+			width: 400px;
+			padding: 10px;
+			margin: 10px 0;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+		a{
+			text-decoration: none;
+		}
+		
+		.button {
+			background-color: white;
+			padding: 10px 25px;
+			font-size: 13px;
+			cursor: pointer;
+		}
+		
+		.button:hover {
+			background-color: #ccc;
+		}
+		.error-message {
+            color: #ff0000;
+        }
+        .success-message {
+            color: #00cc00;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Login </h1>
+    <div class="form-container">
+        <form th:action="@{/authenticateTheUser}" method="post">
+        	<div th:if="${param.error}">
+		        <p class="error-message">Sorry! You entered invalid username/password</p>
+		    </div>
+		    <p class="success-message" th:text="${successMessage}"></p>
+            <input type="email" placeholder="Email" name="username" required="required"><br>
+            <input type="password" placeholder="Password" name="password" required="required"><br>
+            <br>
+            <button class="button" type="submit">Submit</button>
+        </form>
+        <p>
+            Don't have an account? <a th:href="@{/register}" >Create one</a>
+        </p>
+        <p><a th:href="@{/changepassword}">forgot password </a></p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Registration Page</title>
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #f4f4f4;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		justify-content: center;
+	}
+	
+	.container {
+		text-align: center;
+		width: 700px;
+	}
+	
+	.form-container {
+		background-color: #fff;
+		border-radius: 5px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		padding: 20px;
+	}
+	
+	.form-container input {
+		width: 400px;
+		padding: 10px;
+		margin: 10px 0;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+	}
+	
+	a {
+		text-decoration: none;
+	}
+	
+	.button {
+		background-color: white;
+		padding: 10px 25px;
+		font-size: 13px;
+		cursor: pointer;
+	}
+	
+	.button:hover {
+		background-color: #ccc;
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Create Account</h1>
+		<div class="form-container">
+			<form th:action="@{/register}" method="post">
+				<div th:if="${error!=null}">
+					<i>Sorry! Email already in use</i>
+				</div>
+				<input type="text" placeholder="Name" name="name"
+					required="required"><br> <input type="email"
+					placeholder="Email" name="email" required="required"><br>
+				<input type="password" placeholder="Password" name="password"
+					required="required"><br> <input type="password"
+					placeholder="Confirm Password" name="confirmPassword"
+					required="required"><br> <br>
+				<button class="button" type="submit">Submit</button>
+			</form>
+			<p>
+				Already have an account? <a th:href="@{/login}">Login</a>
+			</p>
+		</div>
+	</div>
+</body>
+</html>
